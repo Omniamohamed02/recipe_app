@@ -10,14 +10,20 @@ class Recipe {
   final double rating;
   final String image;
   final List<String> instructions;
+  final String cuisine;
+  final int cookTimeMinutes;
 
-  Recipe({
+
+
+  Recipe( {
     required this.name,
     required this.ingredients,
     required this.caloriesPerServing,
     required this.rating,
     required this.image,
     required this.instructions,
+    required this.cuisine,
+    required this.cookTimeMinutes,
   });
 
   factory Recipe.fromJson(Map<String, dynamic> json) {
@@ -33,7 +39,8 @@ class Recipe {
       instructions: (json['instructions'] as List<dynamic>?)
           ?.map((instruction) => instruction as String)
           .toList() ??
-          [],
+          [], cuisine:json['cuisine'] as String, cookTimeMinutes: (json['cookTimeMinutes'] as num).toInt(),
+
     );
   }
 }

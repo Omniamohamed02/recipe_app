@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:recipe_app/cubit/recipe_cubit.dart';
 import 'package:recipe_app/cubit/recipe_state.dart';
-import 'package:recipe_app/model/recipe.dart';
-import 'package:recipe_app/screens/details_Screen.dart';
+import 'package:recipe_app/screens/recipe_screen.dart';
 import 'package:recipe_app/widgets/recipe_widget.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -18,9 +17,9 @@ class HomeScreen extends StatelessWidget {
         flexibleSpace: Container(
           decoration:const BoxDecoration(
             gradient: LinearGradient(colors: [
-              Color(0xFFE23E3E),
-              Color(0xFFFF6B6B),
-              Color(0xFFFFB3B3),
+              Color(0xFFF57C00),
+              Color(0xFFFF9800),
+              Color(0xFFFFB74D),
             ],
                 begin: Alignment.topLeft,
               end :Alignment.bottomRight,),
@@ -30,13 +29,15 @@ class HomeScreen extends StatelessWidget {
           )
           ),
         ),
-        title: Text('Recipe App' ,
-        style: TextStyle(color: Colors.white,fontSize: 24,fontWeight: FontWeight.bold),),
+        title: const Center(
+          child: Text('Recipe App' ,
+          style: TextStyle(color: Colors.white,fontSize: 24,fontWeight: FontWeight.bold),),
+        ),
       ),
       body:  BlocBuilder<RecipeCubit,RecipeState>(
         builder: (context,state){
           if(state is RecipeLoading){
-            return Center(child: CircularProgressIndicator(color: Color(0xFFE23E3E),));
+            return const Center(child: CircularProgressIndicator(color: Color(0xFFE23E3E),));
           }
           else if(state is RecipeErorr){
             return Center(child: Text(state.massage));
@@ -51,13 +52,13 @@ class HomeScreen extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                        builder: (context) => DetailsScreen(recipe: state.recipe[index])));
+                        builder: (context) => RecipesScreen(recipe: state.recipe[index])));
                   },
                 );
               });
         }
           else{
-          return Center(child: Text('No Recipes Found'));
+          return const Center(child: Text('No Recipes Found'));
       }}
       ),
     );

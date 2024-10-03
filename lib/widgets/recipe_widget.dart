@@ -59,7 +59,12 @@ class RecipeWidget extends StatelessWidget {
             Positioned(
               bottom: 15,
                 right: 15,
-                child: Text('${recipe.caloriesPerServing}Kcal',style: TextStyle(color: Colors.white),)),
+                child: Row(
+                  children: [
+                    Icon(Icons.whatshot,color: Colors.white,),
+                    Text('${recipe.caloriesPerServing}cal',style: TextStyle(color: Colors.white),),
+                  ],
+                )),
             Positioned(
               bottom: 8,
                 left:8 ,
